@@ -33,7 +33,7 @@ UserRouter.post('/login', async (req, res) => {
             bcrypt.compare(password, SecurePassword, function (err, result) {
                 if (result) {
                     const token = JWT.sign({ 'userID': UserLogin[0]._id }, process.env.JWT_KEY);
-                    res.send({ "message": "Account Created, LogIn Successfull" });
+                    res.send({ "message": "Account Created, LogIn Successfull" , "token" : token});
                 }
                 else {
                     res.status(400).send({ "message": "User With Email Not Found, Try Again" })
